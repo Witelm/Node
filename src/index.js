@@ -14,29 +14,34 @@ const server = http.createServer((request, response) => {
   const params = url.searchParams;
 
   if (params.keys().next().done) {
-    response.statusCode = 200;
-    response.statusMessage = "OK";
-    response.setHeader("Content-Type", "text/plain");
+    response.writeHead(200, { "content-Type": "text/plain" });
+    // response.statusCode = 200;
+    // response.statusMessage = "OK";
+    // response.setHeader("Content-Type", "text/plain");
     response.end(`Hello, World!`);
   } else if (name) {
-    response.statusCode = 200;
-    response.statusMessage = "OK";
-    response.setHeader("Content-Type", "text/plain");
+    response.writeHead(200, { "content-Type": "text/plain" });
+    // response.statusCode = 200;
+    // response.statusMessage = "OK";
+    // response.setHeader("Content-Type", "text/plain");
     response.end(`Hello, ${name}.`);
   } else if (name === "") {
-    response.statusCode = 400;
-    response.statusMessage = "Bad Request";
-    response.setHeader("Content-Type", "text/plain");
+    response.writeHead(400, { "content-Type": "text/plain" });
+    // response.statusCode = 400;
+    // response.statusMessage = "Bad Request";
+    // response.setHeader("Content-Type", "text/plain");
     response.end("Enter a name");
   } else if (users === "") {
-    response.statusCode = 200;
-    response.statusMessage = "OK";
-    response.setHeader("Content-Type", "application/json");
+    response.writeHead(200, { "content-Type": "application/json" });
+    // response.statusCode = 200;
+    // response.statusMessage = "OK";
+    // response.setHeader("Content-Type", "application/json");
     response.end(getUsers());
   } else {
-    response.statusCode = 500;
-    response.statusMessage = "Internal Server Error";
-    response.setHeader("Content-Type", "text/plain");
+    response.writeHead(500, { "content-Type": "text/plain" });
+    // response.statusCode = 500;
+    // response.statusMessage = "Internal Server Error";
+    // response.setHeader("Content-Type", "text/plain");
     response.end();
   }
 });
